@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Girlfriend</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #282c34;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #282c34;
+            background-color: #61dafb;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #21a1f1;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            transform: rotate(45deg);
+            margin: 20px auto;
+            opacity: 0;
+            animation: heartPop 0.5s forwards;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -25px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: 25px;
+            top: 0;
+        }
+
+        @keyframes heartPop {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To My Beautiful Girlfriend</h1>
+        <p id="confession-text">I Love You Po Lovee I Promise Ikaw Lang Po Mamahalin Ko Hindi...</p>
+        <button id="reveal-name">Next</button>
+        <p id="name" class="hidden">Man Ako Yung Pinaka Gwapo At Least Mamahalin Kita At Hindi Kita Sasaktan, Papaiyakin. Hindi Rin Ako Magloloko. Sorry if may pagka cringe at jejemon toh HAHAHAHAHA ANYWAYS I LOVE YOU  ALWAYS LOVE KO MWAHH!</p>
+        <button id="restart" class="hidden">Start Over</button>
+    </div>
+    <script>
+        document.getElementById('reveal-name').addEventListener('click', function() {
+            document.getElementById('confession-text').classList.add('hidden');
+            document.getElementById('name').classList.remove('hidden');
+            document.getElementById('restart').classList.remove('hidden');
+
+            // Create and animate the heart
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            document.body.appendChild(heart);
+
+            // Position the heart in the center of the screen
+            heart.style.left = `${window.innerWidth / 2 - 25}px`;
+            heart.style.top = `${window.innerHeight / 2 - 25}px`;
+
+            // Remove the heart after animation ends
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        });
+
+        document.getElementById('restart').addEventListener('click', function() {
+            document.getElementById('confession-text').classList.remove('hidden');
+            document.getElementById('name').classList.add('hidden');
+            document.getElementById('restart').classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
